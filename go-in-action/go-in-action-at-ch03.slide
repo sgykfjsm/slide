@@ -1,0 +1,185 @@
+Go in Action 輪読会 #03
+3. PACKAGING AND TOOLING
+12 Nov 2015
+Tags: golang, go
+
+Shigeyuki Fujishima
+
+* Agenda
+
+- USING GO TOOLS
+- GOING FURTHER WITH GO DEVELOPER TOOLS
+- COLLABORATING WITH OTHER GO DEVELOPERS
+- DEPENDENCY MANAGEMENT
+- SUMMARY
+
+* USING GO TOOLS
+
+* go tools
+
+.code go_output.code /^The commands are/,/	vet/
+
+* command format(go build)
+
+- go build // blank argument
+- go build ${package_name}
+- go build ${package_name}/...
+- go build ${filename}
+- go build . // dot
+
+* GOING FURTHER WITH GO DEVELOPER TOOLS
+
+* Go vet
+
+check our code for common errors
+
+- Bad parameters in Printf-style function calls
+- Method signature errors for common method definitions
+- Bad struct tags
+- Unkeyed composite literals
+
+NOTE:
+The go vet tool won’t keep us from making huge errors in logic, or from creating buggy code
+
+* Go vet
+
+In addition...
+
+- Useless assignments
+- Common mistakes when using sync/atomic
+- Invalid +build tags
+- Passing locks by value
+- Comparing functions with nil
+- Using wrong printf format specifiers
+- Closing over loop variables the wrong way
+- Unreachable code
+- Misuse of unsafe.Pointer
+- Mistakes involving boolean operators
+
+* Go vet
+
+`go vet` output sample
+
+.code go_vet_output_sample.code
+
+.link https://gist.github.com/sgykfjsm/82175787974ffa43d13b#file-go_ver_sample-go sample code
+
+* Go format
+
+- The `fmt` command will automatically format the source code files we specify and save them
+- Do yourself a favor and configure this right now.
+
+.code go_fmt_sample.code
+
+* Go document - 1 -
+
+In your termlnal
+
+    $ go doc tar
+    package tar // import "archive/tar"
+
+    Package tar implements access to tar archives. It aims to cover most of the
+    variations, including those produced by GNU and BSD tars.
+
+    References:
+
+        http://www.freebsd.org/cgi/man.cgi?query=tar&sektion=5
+        http://www.gnu.org/software/tar/manual/html_node/Standard.html
+        http://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html
+    ...
+
+For browsing
+
+    $ godoc -http=:6060
+
+.link http://localhost:6060
+
+* Go document - 2 -
+
+The best part of Go’s documentation tool is that it works for our code to.
+
+- Start by adding comments directly above the identifiers we want to document
+- If you want to write document, add `doc.go` and write down on this.
+
+doc.go sample code:
+
+.link https://github.com/golang/tools/blob/master/cmd/present/doc.go
+
+doc.go sample view:
+
+    $ go doc present
+    Present displays slide presentations and articles. It runs a web server that
+    presents slide and article files from the current directory.
+
+    It may be run as a stand-alone command or an App Engine app. Instructions
+    for deployment to App Engine are in the README of the golang.org/x/tools
+    repository.
+    ...
+
+* COLLABORATING WITH OTHER GO DEVELOPERS
+
+* PACKAGE SHOULD LIVE AT THE ROOT OF THE REPOSITORY
+
+- specify the full path to the package that should be imported.
+- the package name should be the repository name
+- the package’s source should be in the root of the repository’s directory structure
+
+* PACKAGE SHOULD LIVE AT THE ROOT OF THE REPOSITORY
+
+.code import_sample.code
+
+* DEPENDENCY MANAGEMENT
+
+* We don't have Official Support
+
+.link https://golang.org/doc/faq#get_version How should I manage package versions using "go get"?
+
+the Go language team has started with version 1.5, to experiment with new build options and features to provide better internal tooling support for dependency management.
+
+* Vendoring dependencies
+
+- Copy all the dependencies into a directory inside the project repo
+- To re-write any import paths that reference those dependencies by providing the location inside the project itself
+
+Support Tools:
+
+.link https://github.com/tools/godep godep
+.link https://github.com/kardianos/govendor govendor
+.link https://godoc.org/golang.org/x/tools/cmd/gomvpkg gomvpkg
+
+FYI:
+
+.link https://github.com/avelino/awesome-go#package-management avelino/awesome-go#package-management
+
+* Introducing gb
+
+`gb` ...
+- does not wrap the Go tooling
+- does it use `GOPATH`
+- is project project based approach
+- does not re-write `import` path
+- is not compatible with the Go tooling, including go get
+
+FYI:
+
+.link http://getgb.io
+
+* SUMMARY
+
+* Follow Go ecosystem
+
+- Packages are the basic unit of code organization in Go.
+- Our GOPATH determines on disk where Go source code is saved, compiled, and installed.
+- We can set our GOPATH for each different project, keeping all of our source and dependencies separate.
+- We can use packages created by other people by using go get to fetch and install them in our GOPATH.
+- It’s easy to create packages for others to use if we host them on a public source code repository and follow a few simple rules.
+- It's recommended to use vendoring to manage dependencies.
+- There are several community developed tools for dependency management such as godep, vendor and gb.
+
+
+* Reference
+
+.link https://golang.org/doc/faq The Go Programming Language Frequently Asked Questions (FAQ)
+.link http://dominik.honnef.co/posts/2014/12/an_incomplete_list_of_go_tools/ An incomplete list of Go tools
+.link http://deeeet.com/writing/2015/06/26/golang-dependency-vendoring/ Go言語のDependency/Vendoringの問題と今後．gbあるいはGo1.5
+.link https://github.com/avelino/awesome-go avelino/awesome-go

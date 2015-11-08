@@ -1,0 +1,14 @@
+$ cat go_fmt_sample.go
+package main
+
+func main(){if true != false {println("This is `go fmt` sample")}}
+$ go fmt ./go_fmt_sample.go
+go_fmt_sample.go
+$ cat go_fmt_sample.go
+package main
+
+func main() {
+        if true != false {
+                println("This is `go fmt` sample")
+        }
+}

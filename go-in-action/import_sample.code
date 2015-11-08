@@ -1,0 +1,23 @@
+# $GOPATH is /Users/sgyk/local/script/golang
+# In this case, repository name is "github.com/sgykfjsm/hello"
+$ tree /Users/sgyk/local/script/golang/src/github.com/sgykfjsm/hello
+/Users/sgyk/local/script/golang/src/github.com/sgykfjsm/hello
+├── hello.go
+└── helper
+    └── hello_helper.go
+
+1 directory, 2 files
+$ cat ./hello.go
+package main
+
+// Yes, you can use local import like this, but ...
+import "./helper"
+
+// following code is better
+// import "github.com/sgykfjsm/hello/helper"
+
+func main() {
+        helper.Greeting("someone")
+}
+$ go run ./hello.go
+hell, someone

@@ -1,0 +1,15 @@
+go_vet_sample.go:11: +build comment must appear before package clause and be followed by a blank line
+go_vet_sample.go:18: bar passes Lock by value: sync.Mutex
+go_vet_sample.go:52: unreachable code
+go_vet_sample.go:21: result of fmt.Sprintf call not used
+go_vet_sample.go:21: arg 1 for printf verb %s of wrong type: int
+go_vet_sample.go:22: result of fmt.Sprint call not used
+go_vet_sample.go:22: possible formatting directive in Sprint call
+go_vet_sample.go:25: self-assignment of a to a
+go_vet_sample.go:27: crypto/tls.Certificate composite literal uses unkeyed fields
+go_vet_sample.go:29: comparison of function foo != nil is always true
+go_vet_sample.go:33: possible misuse of unsafe.Pointer
+go_vet_sample.go:37: range variable x captured by func literal
+go_vet_sample.go:42: direct assignment to atomic value
+go_vet_sample.go:45: suspect and: c == false && c == true
+go_vet_sample.go:48: redundant or: c || c
