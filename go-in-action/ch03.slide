@@ -17,7 +17,7 @@ Shigeyuki Fujishima
 
 * go tools
 
-.code go_output.code /^The commands are/,/	vet/
+.code ch03-code/go_output.code /^The commands are/,/	vet/
 
 * command format(go build)
 
@@ -60,7 +60,7 @@ In addition...
 
 `go vet` output sample
 
-.code go_vet_output_sample.code
+.code ch03-code/go_vet_output_sample.code
 
 .link https://gist.github.com/sgykfjsm/82175787974ffa43d13b#file-go_ver_sample-go sample code
 
@@ -69,7 +69,7 @@ In addition...
 - The `fmt` command will automatically format the source code files we specify and save them
 - Do yourself a favor and configure this right now.
 
-.code go_fmt_sample.code
+.code ch03-code/go_fmt_sample.code
 
 * Go document - 1 -
 
@@ -88,13 +88,17 @@ In your termlnal
         http://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html
     ...
 
+* Go document - 2 -
+
 For browsing
 
     $ godoc -http=:6060
 
+Go to:
+
 .link http://localhost:6060
 
-* Go document - 2 -
+* Go document - 3 -
 
 The best part of Go’s documentation tool is that it works for our code to.
 
@@ -126,7 +130,7 @@ doc.go sample view:
 
 * PACKAGE SHOULD LIVE AT THE ROOT OF THE REPOSITORY
 
-.code import_sample.code
+.code ch03-code/import_sample.code
 
 * DEPENDENCY MANAGEMENT
 
